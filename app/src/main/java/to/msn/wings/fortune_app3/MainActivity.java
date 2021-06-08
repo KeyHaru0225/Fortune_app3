@@ -1,13 +1,17 @@
 ipackage to.msn.wings.fortune_app3;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
-// TODO 画面固定を追加
-// TODO トースト表示「おみくじと入力して下さい」を追加
-// TODO 乱数調整
-// TODO 「おみくじ」以外が入力された時の例外処理
+// TODO 画面固定を追加　済
+// TODO トースト表示「おみくじと入力して下さい」を追加 済
+// TODO 乱数調整　済
+
+
+// TODO 「おみくじ」以外が入力された時の例外処理　済？
 
 // TODO ルーズリーフ参照
 
@@ -34,4 +38,50 @@ public class MainActivity extends AppCompatActivity {
         TextView txtResult = findViewById(R.id.txtResult);
         txtResult.setText(savedInstanceState.getString("txtResult"));
     }
+
+    // Toast表示
+    String toastMessage;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button button = findViewById(R.id.button);
+
+        toastMessage = "「おみくじと入力」";
+
+        button.setOnClickListener(View view) {
+            Toast toast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
+            toast.show();
+        });素を
+    }
+
+    // おみくじ
+    @Override
+    public void onClick(View v) {  // TODO v をViewに変更すべきか
+        if(v.equals(mSendMessage)) {
+            // SENDボタンが押された時の処理
+            String inputText = mInputMessage.getText().toString();
+            String answer;
+            mUserMessage.setText(inputText);
+            if (inputText.contains("おみくじ")) {
+                double random = Math.random() * 5d;
+                if (random < 1d) {
+                    answer = "大凶";
+                } else if (random < 2d) {
+                    answer = "凶";
+                } else if (random < 3d) {
+                    answer = "吉";
+                } else if (random < 4d) {
+                    answer = "中吉";
+                } else {
+                    answer = "大吉";
+                }
+            } else {
+                System.out.println("「おみくじ」と入力して下さい");
+            }
+        }
+    }
+
 }
