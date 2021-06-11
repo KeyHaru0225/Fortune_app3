@@ -1,8 +1,10 @@
-ipackage to.msn.wings.fortune_app3;
+package to.msn.wings.fortune_app3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log; //6/11追加
 import android.view.View;
+import android.widget.Button; //6/11追加
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +23,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button btn = findViewById(R.id.send_message);
+        btn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TextView txt = findViewById(R.id.user_message);
+                        txt.setText(toastMessage);
+                    }
+                }
+        );
     }
 
     // 画面が破棄される前に状態を保存
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        TextView txtResult = findViewById(R.id.txtResult);
+        TextView txtResult = findViewById(R.id.user_message);
         outState.putString("txtResult", txtResult.getText().toString());
     }
 
@@ -35,30 +47,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstance) {
         super.onRestoreInstanceState(savedInstanceState);
-        TextView txtResult = findViewById(R.id.txtResult);
+        TextView txtResult = findViewById(R.id.user_message);
         txtResult.setText(savedInstanceState.getString("txtResult"));
     }
+        // Toast表示
 
-    // Toast表示
-    String toastMessage;
+        String toastMessage = "「おみくじと入力」";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        public void btnCurrent_onClick (View view){
+            TextView txt = findViewById(R.id.txtResult);
+            txt.setText(toastMessage);
 
-        Button button = findViewById(R.id.button);
-
-        toastMessage = "「おみくじと入力」";
-
-        button.setOnClickListener(View view) {
-            Toast toast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(
+                    this, toastMessage, Toast.LENGTH_LONG);
             toast.show();
-        });素を
-    }
+        }
+
+
+
 
     // おみくじ
-    @Override
     public void onClick(View v) {  // TODO v をViewに変更すべきか
         if(v.equals(mSendMessage)) {
             // SENDボタンが押された時の処理
