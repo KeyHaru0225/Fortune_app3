@@ -26,22 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    // Toast表示
-    public void btnCurrent_onClick(View view) {
-        TextView txt = findViewById(R.id.user_message);
-        txt.setText(toastMessage);
-
-        Toast toast = Toast.makeText(
-                this, toastMessage, Toast.LENGTH_LONG);
-        toast.show();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Button btn = findViewById(R.id.send_message);
         btn.setOnClickListener(
                 new View.OnClickListener() {
@@ -52,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    // Toast表示
+    public void btnCurrent_onClick(View view) {
+        TextView txt = findViewById(R.id.user_message);
+        txt.setText(toastMessage);
+
+        Toast toast = Toast.makeText(
+                this, toastMessage, Toast.LENGTH_LONG);
+        toast.show();
     }
 
     // 画面が破棄される前に状態を保存
