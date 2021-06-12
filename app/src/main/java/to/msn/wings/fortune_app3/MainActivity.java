@@ -2,9 +2,8 @@ package to.msn.wings.fortune_app3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log; //6/11追加
 import android.view.View;
-import android.widget.Button; //6/11追加
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -20,31 +19,31 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    String toastMessage = "「おみくじと入力」";
+    // String toastMessage = "「おみくじと入力」";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn = findViewById(R.id.send_message);
+        Button btn = findViewById(R.id.btnCurrent);
         btn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         TextView txt = findViewById(R.id.user_message);
-                        txt.setText(toastMessage);
+                        txt.setText(answer);
                     }
                 }
         );
     }
 
-    // Toast表示
-    public void btnCurrent_onClick(View view) {
-        TextView txt = findViewById(R.id.user_message);
-        txt.setText(toastMessage);
-
+    // Toast表示  //ボタンをクリックしたら表示される
+    public void btnCurrent_onClick(View view){
+        // TextView txt = findViewById(R.id.user_message);
+        //        txt.setText(toastMessage);
+        String toastMessage = "良い結果は出ましたか？";
         Toast toast = Toast.makeText(
-                this, toastMessage, Toast.LENGTH_LONG);
+                MainActivity.this, toastMessage, Toast.LENGTH_LONG);
         toast.show();
     }
 
@@ -64,19 +63,16 @@ public class MainActivity extends AppCompatActivity {
         txtResult.setText(savedInstanceState.getString("txtResult"));
     }
 
-
-
-
     // おみくじ
     private EditText mInputMessage;
     private Button mSendMessage;
     private TextView mUserMessage;
-    public void onClick(View v) {  // TODO v をViewに変更すべきか
-
+    private String answer;
+    public void btnCurrent_onClick(View v) {  // TODO v をViewに変更すべきか
         if(v.equals(mSendMessage)) {
             // SENDボタンが押された時の処理
             String inputText = mInputMessage.getText().toString();
-            String answer;
+
             mUserMessage.setText(inputText);
             if (inputText.contains("おみくじ")) {
                 double random = Math.random() * 5d;
@@ -96,5 +92,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
+
+
 
 }
