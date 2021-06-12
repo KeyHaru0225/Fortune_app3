@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button; //6/11追加
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.EditText;
 
 // TODO 画面固定を追加　済
 // TODO トースト表示「おみくじと入力して下さい」を追加 済
@@ -18,6 +19,24 @@ import android.widget.Toast;
 // TODO ルーズリーフ参照
 
 public class MainActivity extends AppCompatActivity {
+
+    String toastMessage = "「おみくじと入力」";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    // Toast表示
+    public void btnCurrent_onClick(View view) {
+        TextView txt = findViewById(R.id.user_message);
+        txt.setText(toastMessage);
+
+        Toast toast = Toast.makeText(
+                this, toastMessage, Toast.LENGTH_LONG);
+        toast.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +68,17 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         TextView txtResult = findViewById(R.id.user_message);
         txtResult.setText(savedInstanceState.getString("txtResult"));
-
-        // Toast表示
-
-        String toastMessage = "「おみくじと入力」";
-
-        @Override
-        public void btnCurrent_onClick(View view) {
-            TextView txt = findViewById(R.id.txtResult);
-            txt.setText(toastMessage);
-
-            Toast toast = Toast.makeText(
-                    this, toastMessage, Toast.LENGTH_LONG);
-            toast.show();
-        }
     }
 
 
 
 
     // おみくじ
+    private EditText mInputMessage;
+    private Button mSendMessage;
+    private TextView mUserMessage;
     public void onClick(View v) {  // TODO v をViewに変更すべきか
+
         if(v.equals(mSendMessage)) {
             // SENDボタンが押された時の処理
             String inputText = mInputMessage.getText().toString();
