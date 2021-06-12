@@ -45,16 +45,17 @@ public class MainActivity extends AppCompatActivity {
 
     // 画面が復元される際に状態を取り出し
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstance) {
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         TextView txtResult = findViewById(R.id.user_message);
         txtResult.setText(savedInstanceState.getString("txtResult"));
-    }
+
         // Toast表示
 
         String toastMessage = "「おみくじと入力」";
 
-        public void btnCurrent_onClick (View view){
+        @Override
+        public void btnCurrent_onClick(View view) {
             TextView txt = findViewById(R.id.txtResult);
             txt.setText(toastMessage);
 
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     this, toastMessage, Toast.LENGTH_LONG);
             toast.show();
         }
+    }
 
 
 

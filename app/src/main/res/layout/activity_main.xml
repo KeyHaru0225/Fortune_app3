@@ -24,6 +24,7 @@
         android:layout_marginRight="0dp"
         android:background="#696969"
         android:paddingTop="0dp"
-        android:text="SEND" />
+        android:text="SEND"
+        android:onClick="btnCurrent_onClick"/>
 
 </LinearLayout>
