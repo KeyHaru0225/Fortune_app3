@@ -16,24 +16,25 @@
 
         <Button
             android:id="@+id/btnCurrent"
-            android:layout_width="293dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="250dp"
-            android:layout_marginLeft="250dp"
+            android:layout_marginLeft="200dp"
             android:layout_marginTop="0dp"
-            android:layout_marginRight="0dp"
-            android:background="#696969"
+            android:layout_marginRight="50dp"
+            android:backgroundTint="#696969"
             android:onClick="btnCurrent_onClick"
             android:paddingTop="20dp"
-            android:text="SEND" />
+            android:text="SEND"
+            android:gravity="center_horizontal"/>
 
     <EditText
         android:id="@+id/txtResult"
         android:layout_width="58dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:text="" />
-
+        android:text=""/>
+    
     <TextView
         android:id="@+id/cpu_message"
         android:layout_width="158dp"

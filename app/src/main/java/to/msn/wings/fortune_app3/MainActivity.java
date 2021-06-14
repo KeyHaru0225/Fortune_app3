@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnCurrent_onClick(View view) { //147
         EditText txtName = findViewById(R.id.user_message);
-        TextView txtResult = findViewById(R.id.txtResult);
+        // TextView txtResult = findViewById(R.id.txtResult);
 
 
 
