@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 
+import java.util.Date;
+
 // TODO 画面固定を追加　済
 // TODO トースト表示「おみくじと入力して下さい」を追加 済
 // TODO 乱数調整　済
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     // String toastMessage = "「おみくじと入力」";
 
+    // ボタンクリック時の処理定義
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,46 +33,35 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        TextView txt = findViewById(R.id.user_message);
+                        TextView txt = findViewById(R.id.txtResult);
                         txt.setText(answer);
                     }
                 }
         );
+        // ラムダ式
+        btn.setOnClickListener(view -> {
+            TextView txt = findViewById(R.id.txtResult);
+            txt.setText(answer);
+        });
     }
 
-    // Toast表示  //ボタンをクリックしたら表示される
-    public void btnCurrent_onClick(View view){
-        // TextView txt = findViewById(R.id.user_message);
-        //        txt.setText(toastMessage);
-        String toastMessage = "良い結果は出ましたか？";
-        Toast toast = Toast.makeText(
-                MainActivity.this, toastMessage, Toast.LENGTH_LONG);
-        toast.show();
-    }
-
-    // 画面が破棄される前に状態を保存
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        TextView txtResult = findViewById(R.id.user_message);
-        outState.putString("txtResult", txtResult.getText().toString());
-    }
-
-    // 画面が復元される際に状態を取り出し
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        TextView txtResult = findViewById(R.id.user_message);
-        txtResult.setText(savedInstanceState.getString("txtResult"));
-    }
 
     // おみくじ
     private EditText mInputMessage;
     private Button mSendMessage;
     private TextView mUserMessage;
     private String answer;
-    public void btnCurrent_onClick(View v) {  // TODO v をViewに変更すべきか
-        if(v.equals(mSendMessage)) {
+
+    // Toast表示  //ボタンをクリックしたら表示される
+    public void btnCurrent_onClick(View view) {
+
+        mInputMessage = (EditText) findViewById(R.id.user_message); //ユーザーが入力するフィールド
+        mSendMessage = (Button) findViewById(R.id.btnCurrent);      //SENDボタン
+        mUserMessage = (TextView) findViewById(R.id.txtResult);  //ユーザーが入力した内容
+
+        // TextView txt = findViewById(R.id.user_message);
+        //        txt.setText(toastMessage);
+        if(view.equals(mSendMessage)) {
             // SENDボタンが押された時の処理
             String inputText = mInputMessage.getText().toString();
 
@@ -91,11 +83,25 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("「おみくじ」と入力して下さい");
             }
         }
+        String toastMessage = "良い結果は出ましたか？";
+        Toast toast = Toast.makeText(
+                MainActivity.this, toastMessage, Toast.LENGTH_LONG);
+        toast.show();
     }
 
+    // 画面が破棄される前に状態を保存
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        TextView txtResult = findViewById(R.id.user_message);
+        outState.putString("txtResult", txtResult.getText().toString());
+    }
 
-
-
-
-
+    // 画面が復元される際に状態を取り出し
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        TextView txtResult = findViewById(R.id.user_message);
+        txtResult.setText(savedInstanceState.getString("txtResult"));
+    }
 }

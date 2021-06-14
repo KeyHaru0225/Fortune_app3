@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Fortune_app3</string>
+    <string name="btnCurrent">SEND</string>
+    <string name="hello_world">こんにちは、世界！</string>
 </resources>

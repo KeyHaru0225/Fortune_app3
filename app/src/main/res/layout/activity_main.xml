@@ -12,7 +12,6 @@
         android:layout_marginTop="0dp"
         android:layout_marginRight="0dp"
         android:paddingTop="0dp"
-        android:text=""
         android:hint="「おみくじ」と入力して下さい"/>
 
     <Button
@@ -23,8 +22,14 @@
         android:layout_marginTop="0dp"
         android:layout_marginRight="0dp"
         android:background="#696969"
+        android:onClick="btnCurrent_onClick"
         android:paddingTop="0dp"
-        android:text="SEND"
-        android:onClick="btnCurrent_onClick"/>
+        android:text="@string/btnCurrent" />
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
 
 </LinearLayout>
